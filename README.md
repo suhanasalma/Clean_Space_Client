@@ -7,6 +7,7 @@ Steps for my project:
 4. connected with firebase
 5. installed react icons
 6. installed swiper js
+7. daisy ui installed
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
