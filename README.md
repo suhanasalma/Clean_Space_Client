@@ -1,5 +1,13 @@
 # Getting Started with Create React App
 
+Steps for my project:
+1.creating folder 
+2. downloaded tailwind and using mamba ui
+3. downloaded React Router
+4. connected with firebase
+5. installed react icons
+6. installed swiper js
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
