@@ -42,10 +42,7 @@ const Header = () => {
            <Link to="/" className=" text-center normal-case text-2xl">
              <div className="flex items-center">
                <img src={logo} className="w-10 h-10" alt="" />
-               <div>
-                 <p className="text-green-700">Clean Your</p>
-                 <p className="text-sky-700">Space</p>
-               </div>
+                 <p className="text-green-700">Clean Space</p>
              </div>
            </Link>
          </div>

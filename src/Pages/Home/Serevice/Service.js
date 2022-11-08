@@ -18,13 +18,13 @@ const Service = () => {
          <h1 className="text-4xl mb-5 font-semibold">
            Cleaning Services that are Provided
          </h1>
-         <p className="w-6/12 mx-auto">
+         <p className=" md:w-6/12 mx-auto">
            Let me use my years of experience, skilled, and advanced procedures
            to ensure a clean and healthy environment for your employees,
            customers and guests.
          </p>
        </div>
-       <div className="flex justify-center items-center gap-10">
+       <div className="flex sm:flex-col lg:flex-row justify-center items-center gap-10">
          {services.map((service) => (
            <ServiceCard key={service._id} service={service}></ServiceCard>
          ))}
