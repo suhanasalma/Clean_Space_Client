@@ -32,7 +32,7 @@ const Slider = () => {
      <div>
        <div className="carousel w-full">
          {
-            sliderItem.map(item=><SliderItem item={item}></SliderItem>)
+            sliderItem.map(item=><SliderItem key={item.id} item={item}></SliderItem>)
          }
        </div>
      </div>

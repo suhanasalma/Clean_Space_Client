@@ -8,6 +8,8 @@ Steps for my project:
 5. installed react icons
 6. installed swiper js
 7. daisy ui installed
+8. now creating server side
+9. for server side installed express, cors, mongodb, dotenv
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
