@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ServiceCard from '../../Services/ServiceCard/ServiceCard';
 
 
 const Service = () => {
    const [services,setServices] = useState([])
+   const page = 0;
+   const size = 3
    useEffect(()=>{
-      fetch("http://localhost:5000/services")
-      .then(res=>res.json())
-      .then(data=>{
-         setServices(data)
-         console.log(data)
-      })
-   },[])
+      fetch(`http://localhost:5000/services?page=${page}&size=${size} `)
+        .then((res) => res.json())
+        .then((data) => {
+          setServices(data.services);
+          console.log(data);
+        });
+   },[page,size])
    return (
      <div className="my-20">
        <div className="text-center mb-10">
@@ -30,9 +33,11 @@ const Service = () => {
          ))}
        </div>
        <div className="text-center">
-         <button className="border-2 my-20 px-6 py-3 font-medium text-xl hover:bg-cyan-600 hover:text-white">
-           See All Services
-         </button>
+         <Link to='/services'>
+           <button className="border-2 my-20 px-6 py-3 font-medium text-xl hover:bg-cyan-600 hover:text-white">
+             See All Services
+           </button>
+         </Link>
        </div>
      </div>
    );
