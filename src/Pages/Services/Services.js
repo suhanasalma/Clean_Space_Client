@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import ServiceCard from './ServiceCard/ServiceCard';
 
 const Services = () => {
-  // const {services,count} = useLoaderData()
 
-  //count: 8;
-  //perpage: 3
-  //page: 8/3;
   const [services,setServices] = useState([])
   const [count,setCount] = useState(0)
   const [page,setPage] = useState(0);
-  const [size,setSize] = useState(3);
+  const size = 3
 
 
   useEffect(()=>{
@@ -36,19 +31,19 @@ const Services = () => {
          cleaning specialists offer thorough and organized cleaning services for
          clients across Dhaka.
        </p>
-       <div className="grid grid-cols-3 gap-10">
+       <div className="flex sm:flex-col lg:flex-row justify-center items-center gap-10">
          {services.map((service) => (
            <ServiceCard service={service} key={service._id}></ServiceCard>
          ))}
        </div>
-       <h1>current page: {page}</h1>
-       <div className="flex justify-center space-x-1 dark:text-gray-100 my-20">
+
+       <div className="flex justify-center space-x-1 text-gray-100 my-20">
          {[...Array(pages).keys()].map((number) => (
            <button
              key={number}
              type="button"
              title="Page 1"
-             className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-900 dark:text-violet-400 dark:border-violet-400"
+             className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md bg-slate-100 text-cyan-600 border-cyan-600"
              onClick={() => setPage(number)}
            >
              {number + 1}

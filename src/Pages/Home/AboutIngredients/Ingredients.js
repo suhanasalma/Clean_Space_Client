@@ -222,11 +222,11 @@ const Ingredients = () => {
                  </div>
                </div>
              </div>
-             <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1 w-96">
+             <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1 ">
                <img
                  src={img1}
                  alt=""
-                 className="mx-auto rounded-lg shadow-lg dark:bg-gray-500"
+                 className="mx-auto rounded-lg shadow-lg dark:bg-gray-500 w-96"
                />
              </div>
            </div>
