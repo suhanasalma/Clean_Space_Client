@@ -11,6 +11,13 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_storageBucket,
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
   appId: process.env.REACT_APP_appId,
+
+  // apiKey: "AIzaSyDFrWtI62g8HR2kPfXPbS0XnR-jFkTSm80",
+  // authDomain: "cleaning-company-f8678.firebaseapp.com",
+  // projectId: "cleaning-company-f8678",
+  // storageBucket: "cleaning-company-f8678.appspot.com",
+  // messagingSenderId: "867807173025",
+  // appId: "1:867807173025:web:28282a6f6f7fc5c3d993e0",
 };
 
 // Initialize Firebase

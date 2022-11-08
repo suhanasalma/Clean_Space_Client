@@ -1,29 +1,53 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import img from '../../../Assests/login/login.png'
+import { AuthContext } from '../../../SharedContext/SharedContext';
 
 const Login = () => {
+  const {logInWithEmailPass} = useContext(AuthContext)
 
+  const handleSubmit = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    SignInWithEmailPass (email, password);
+  }
+
+  const SignInWithEmailPass  = (email,password) =>{
+    logInWithEmailPass(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user)
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(error)
+      });
+  }
    return (
-     <div className="flex">
+     <div className="flex justify-between lg:flex-row sm:flex-col sm:items-center">
        <img src={img} alt="" />
        <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100 my-20">
          <h1 className="text-2xl font-bold text-center">Login</h1>
          <form
-           novalidate=""
-           action=""
+           onSubmit={handleSubmit}
            className="space-y-6 ng-untouched ng-pristine ng-valid"
          >
            <div className="space-y-1 text-sm">
              <label for="username" className="block dark:text-gray-400">
-               Username
+               Email
              </label>
              <input
-               type="text"
-               name="username"
-               id="username"
-               placeholder="Username"
-               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+               type="email"
+               name="email"
+               id="email"
+               placeholder="email"
+               className="w-full px-4 py-3 rounded-md text-black"
              />
            </div>
            <div className="space-y-1 text-sm">
@@ -35,7 +59,7 @@ const Login = () => {
                name="password"
                id="password"
                placeholder="Password"
-               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+               className="w-full px-4 py-3 rounded-md text-black"
              />
              <div className="flex justify-end text-xs dark:text-gray-400">
                <a rel="noopener noreferrer" href="#">
@@ -85,7 +109,7 @@ const Login = () => {
          </div>
          <p className="text-xs text-center sm:px-6 text-gray-400 ">
            Don't have an account?
-           <Link to='/register'>
+           <Link to="/register">
              <a
                rel="noopener noreferrer"
                href="#"
