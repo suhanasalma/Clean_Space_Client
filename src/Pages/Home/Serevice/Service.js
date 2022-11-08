@@ -33,8 +33,8 @@ const Service = () => {
          ))}
        </div>
        <div className="text-center">
-         <Link to='/services'>
-           <button className="border-2 my-20 px-6 py-3 font-medium text-xl hover:bg-cyan-600 hover:text-white">
+         <Link to="/services">
+           <button className="border-2 my-20 px-6 py-3 font-medium text-xl hover:bg-cyan-600 hover:text-white  bg-slate-100 hover:bg-cyan-600 hover:text-white ease-in-out duration-700">
              See All Services
            </button>
          </Link>

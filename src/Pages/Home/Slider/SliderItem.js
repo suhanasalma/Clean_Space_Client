@@ -16,7 +16,7 @@ const SliderItem = ({item}) => {
              </p>
              <p className="text-6xl text-white font-medium">We Promise</p>
            </div>
-           <button className="border-2 px-6 py-2 text-white text-xl rounded-xl hover:bg-cyan-600">
+           <button className="border-2 px-6 py-2 text-white text-xl rounded-xl hover:bg-cyan-600 hover:text-white ease-in-out duration-700">
              All Services
            </button>
          </div>

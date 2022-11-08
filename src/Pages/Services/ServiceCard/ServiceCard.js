@@ -20,12 +20,17 @@ const ServiceCard = ({ service }) => {
         <div className="space-y-2">
           <h2 className="text-3xl font-semibold tracking-wide">{name}</h2>
           <p className="dark:text-gray-100">{description.slice(0, 100)}...</p>
-          <p className='flex justify-between font-bold text-cyan-600 text-xl'>{price} $ <span className='flex items-center gap-2'>{ratings} <FaStar/></span></p>
+          <p className="flex justify-between font-bold text-cyan-600 text-xl">
+            {price} ${" "}
+            <span className="flex items-center gap-2">
+              {ratings} <FaStar />
+            </span>
+          </p>
         </div>
         <Link to={`/services/${_id}`}>
           <button
             type="button"
-            className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900 hover:bg-cyan-600 hover:text-white"
+            className="  flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900 bg-slate-100 hover:bg-cyan-600 hover:text-white ease-in-out duration-700"
           >
             Read more
           </button>
