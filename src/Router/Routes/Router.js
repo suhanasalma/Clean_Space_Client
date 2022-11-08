@@ -5,6 +5,7 @@ import Registration from "../../Pages/Authentication/Registration/Registration";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home";
 import InvalidePage from "../../Pages/InvalidePage/InvalidePage";
+import ReviewsByEmailId from "../../Pages/ReviewsSection/ReviewByEmailId/ReviewsByEmailId";
 import ServiceDetails from "../../Pages/ServiceDeatils/ServiceDetails";
 import Services from "../../Pages/Services/Services";
 
@@ -43,7 +44,11 @@ export const router = createBrowserRouter([
       {
         path:'/register',
         element:<Registration/>
-      }
+      },
+      {
+        path:'/reviews',
+        element:<ReviewsByEmailId/>
+      },
     ],
     
   },

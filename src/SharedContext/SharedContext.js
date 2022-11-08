@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 
@@ -41,8 +42,18 @@ const SharedContext = ({children}) => {
       return signOut(auth);
     }
 
+    const updateUser = (profile) =>{
+      return updateProfile(auth.currentUser,profile)
+    }
 
-   const allInfo = { createUserWithEmail, logInWithEmailPass, user, logOut };
+
+   const allInfo = {
+     createUserWithEmail,
+     logInWithEmailPass,
+     user,
+     logOut,
+     updateUser,
+   };
    return (
 
      <div>

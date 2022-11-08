@@ -4,7 +4,7 @@ import img from "../../../Assests/login/signup.png";
 import {AuthContext} from '../../../SharedContext/SharedContext'
 
 const Registration = () => {
-  const {createUserWithEmail} = useContext(AuthContext)
+  const { createUserWithEmail, updateUser } = useContext(AuthContext);
    const handleSubmit = e =>{
       e.preventDefault()
       const form = e.target;
@@ -13,24 +13,49 @@ const Registration = () => {
       const password = form.password.value;
       const image = form.image.value;
       console.log(name,email,password,image)
-       createUser (email, password);
+       createUser(email, password, name, image);
+       
 
    }
-   const createUser = (email, password) => {
+   const createUser = (email, password, name, image) => {
      createUserWithEmail(email, password)
        .then((userCredential) => {
          // Signed in
          const user = userCredential.user;
-         console.log(user)
+         console.log(user);
+         updateProfileOfUser(name, image);
          // ...
        })
        .catch((error) => {
          const errorCode = error.code;
          const errorMessage = error.message;
-         console.error(error)
+         console.error(error);
          // ..
        });
    };
+
+   const updateProfileOfUser = (name,image) =>{
+    const profile ={
+      displayName:name,
+      photoURL: image
+    }
+    updateUser(profile)
+      .then(() => {
+        // Profile updated!
+        // ...
+        console.log('updated')
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
+   }
+
+
+
+
+
+
    return (
      <div className="flex justify-between lg:flex-row sm:flex-col sm:items-center">
        <img src={img} className="md:w-1/2" alt="" />
