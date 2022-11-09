@@ -14,7 +14,9 @@ const ReviewsByEmailId = () => {
     if (!user?.email) {
       return;
     }
-    fetch(`http://localhost:5000/comments?email=${user?.email}`)
+    fetch(
+      `https://cleaning-server-two.vercel.app/comments?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setAllReview(data);
@@ -25,7 +27,7 @@ const ReviewsByEmailId = () => {
     console.log(id);
     const proceed = window.confirm("do you want to delete it?");
     if (proceed) {
-      fetch(`http://localhost:5000/comments/${id}`, {
+      fetch(`https://cleaning-server-two.vercel.app/comments/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

@@ -30,7 +30,7 @@ const ServiceDetails = () => {
 
   const addReview = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/comments", {
+    fetch("https://cleaning-server-two.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -56,13 +56,13 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comments?post=${_id}`)
+    fetch(`https://cleaning-server-two.vercel.app/comments?post=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setMongoReview(data);
       });
-  }, [_id,mongoReview]);
+  }, [_id, mongoReview]);
 
   return (
     <div>
