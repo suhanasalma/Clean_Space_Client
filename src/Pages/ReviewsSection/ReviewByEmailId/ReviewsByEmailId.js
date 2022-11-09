@@ -11,30 +11,21 @@ const ReviewsByEmailId = () => {
   const { user, logOut } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(
-      `https://cleaning-server-ten.vercel.app/comments?email=${user?.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("cleaning-token")}`,
-        },
-      }
-    )
-      .then((res) => {
-        if (res.status === 403 || res.status === 401) {
-          return logOut();
-        }
-        return res.json();
-      })
+    if (!user?.email) {
+      return;
+    }
+    fetch(`http://localhost:5000/comments?email=${user?.email}`)
+      .then((res) => res.json())
       .then((data) => {
         setAllReview(data);
       });
-  }, [user?.email, logOut]);
+  }, [user?.email]);
 
   const handleDelete = (id) => {
     console.log(id);
     const proceed = window.confirm("do you want to delete it?");
     if (proceed) {
-      fetch(`https://cleaning-server-ten.vercel.app/comments/${id}`, {
+      fetch(`http://localhost:5000/comments/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

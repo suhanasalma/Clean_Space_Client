@@ -13,6 +13,7 @@ const ServiceDetails = () => {
   useTitle("Service Details");
   const { user } = useContext(AuthContext);
   const service = useLoaderData();
+  // console.log(service)
   const [review, setReview] = useState({});
   const [mongoReview, setMongoReview] = useState([]);
   const {
@@ -29,7 +30,7 @@ const ServiceDetails = () => {
 
   const addReview = (e) => {
     e.preventDefault();
-    fetch("https://cleaning-server-ten.vercel.app/comments", {
+    fetch("http://localhost:5000/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +42,7 @@ const ServiceDetails = () => {
         if (data.acknowledged) {
           toast("Review Posted");
         }
-        // console.log(data)
+        console.log(data);
       });
   };
 
@@ -55,13 +56,13 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`https://cleaning-server-ten.vercel.app/comments?post=${_id}`)
+    fetch(`http://localhost:5000/comments?post=${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setMongoReview(data);
       });
-  }, [_id, mongoReview]);
+  }, [_id,mongoReview]);
 
   return (
     <div>
@@ -85,7 +86,7 @@ const ServiceDetails = () => {
             <div className="flex justify-between text-start border p-3 w-full sm:flex-col xl:flex-row">
               <div className="xl:w-1/2">
                 <h1 className="my-5 text-4xl font-bold">How I Works:</h1>
-                {features.split(",").map((feature) => (
+                {features?.split(",").map((feature) => (
                   <li className="list-none mb-5">{feature}</li>
                 ))}
               </div>
@@ -93,25 +94,11 @@ const ServiceDetails = () => {
                 <h1 className="my-5 text-4xl font-bold">
                   Why you should take service
                 </h1>
-                {benefits.split(",").map((benfit) => (
+                {benefits?.split(",").map((benfit) => (
                   <li className="list-none mb-5">{benfit}</li>
                 ))}
               </div>
             </div>
-            {/* <div className="flex flex-wrap justify-center mt-10">
-              <button
-                type="button"
-                className="px-8 py-3 m-2 text-lg font-semibold rounded bg-cyan-600 text-white"
-              >
-                Get started
-              </button>
-              <button
-                type="button"
-                className="px-8 py-3 m-2 text-lg border rounded border-cyan-600 text-cyan-600"
-              >
-                Learn more
-              </button>
-            </div> */}
           </div>
         </div>
         <img

@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
       {
         path: "/services/:id",
         loader: ({ params }) =>
-          fetch(`https://cleaning-server-ten.vercel.app/services/${params.id}`),
+          fetch(`http://localhost:5000/services/${params.id}`),
         element: <ServiceDetails />,
       },
       {

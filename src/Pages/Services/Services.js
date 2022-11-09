@@ -11,9 +11,7 @@ const Services = () => {
   const size = 3;
 
   useEffect(() => {
-    fetch(
-      `https://cleaning-server-ten.vercel.app/services?page=${page}&size=${size} `
-    )
+    fetch(`http://localhost:5000/services?page=${page}&size=${size} `)
       .then((res) => res.json())
       .then((data) => {
         setCount(data.count);

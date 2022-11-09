@@ -37,7 +37,6 @@ const SharedContext = ({children}) => {
 
     const logOut = () =>{
       setLoading(true);
-      localStorage.removeItem('cleaning-token')
       return signOut(auth);
     }
 

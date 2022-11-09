@@ -38,33 +38,9 @@ const Login = () => {
     try {
       const result = await logInWithEmailPass(email, password);
       // console.log(result)
-      const user = result.user;
-      const currentUser = {
-        email: user?.email,
-      };
-      fetch("https://cleaning-server-ten.vercel.app/jwt", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          //now token will be stored in local storage
-          localStorage.setItem("cleaning-token", data.token);
-        });
-      console.log(user);
-      navigate(from, { replace: true });
-
-      // ...
 
       navigate(from, { replace: true });
     } catch (error) {
-      // console.log(error.message)
-      setMyError("error");
-      //i tried to use setState but it doesn't work so i use toast for my error
       toast(error.message);
     }
     // logInWithEmailPass(email, password)
@@ -87,30 +63,15 @@ const Login = () => {
       .then((result) => {
         // Signed in
         const user = result.user;
-        const currentUser = {
-          email: user?.email,
-        };
-        fetch("https://cleaning-server-ten.vercel.app/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            //now token will be stored in local storage
-            localStorage.setItem("cleaning-token", data.token);
-          });
-        console.log(user);
+        // console.log(user);
         navigate(from, { replace: true });
 
         // ...
       })
       .catch((error) => {
         console.error(error);
-        setMyError(error.message);
+        // setMyError(error.message);
+        toast(error.message);
       });
   };
 
