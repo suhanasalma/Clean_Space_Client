@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
+import AddService from "../../Pages/AddService/AddService";
 import Login from "../../Pages/Authentication/Login/Login";
 import Registration from "../../Pages/Authentication/Registration/Registration";
 import Blogs from "../../Pages/Blogs/Blogs";
@@ -8,6 +9,7 @@ import InvalidePage from "../../Pages/InvalidePage/InvalidePage";
 import ReviewsByEmailId from "../../Pages/ReviewsSection/ReviewByEmailId/ReviewsByEmailId";
 import ServiceDetails from "../../Pages/ServiceDeatils/ServiceDetails";
 import Services from "../../Pages/Services/Services";
+import PrivateRouter from "../PrivateRoutes/PrivateRouter";
 
 
 export const router = createBrowserRouter([
@@ -35,25 +37,36 @@ export const router = createBrowserRouter([
         path: "/services/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
-        element:<ServiceDetails/>
+        element: <ServiceDetails />,
       },
       {
-        path:'/login',
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:'/register',
-        element:<Registration/>
+        path: "/register",
+        element: <Registration />,
       },
       {
-        path:'/reviews',
-        element:<ReviewsByEmailId/>
+        path: "/reviews",
+        element: (
+          <PrivateRouter>
+            <ReviewsByEmailId />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/addservice",
+        element: (
+          <PrivateRouter>
+            <AddService />
+          </PrivateRouter>
+        ),
       },
     ],
-    
   },
   {
-   path:'*',
-   element:<InvalidePage/>
-  }
+    path: "*",
+    element: <InvalidePage />,
+  },
 ]);

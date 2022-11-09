@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../../Assests/login/login.png'
 import { AuthContext } from '../../../SharedContext/SharedContext';
 
 const Login = () => {
-  const {logInWithEmailPass} = useContext(AuthContext)
+  const { logInWithEmailPass, googleLogIn } = useContext(AuthContext);
+  const navigate = useNavigate()
+  let location = useLocation()
+  let from = location.state?.from?.pathname || "/";
+  console.log(from)
 
   const handleSubmit = e =>{
     e.preventDefault();
@@ -13,6 +17,10 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     SignInWithEmailPass (email, password);
+    navigate(from, { replace: true });
+    console.log('test')
+
+    
   }
 
   const SignInWithEmailPass  = (email,password) =>{
@@ -21,6 +29,9 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user)
+         navigate(from, { replace: true });
+
+        
         // ...
       })
       .catch((error) => {
@@ -28,6 +39,21 @@ const Login = () => {
         const errorMessage = error.message;
         console.error(error)
       });
+  }
+
+  const googleSignIn = () =>{
+      googleLogIn()
+        .then((result) => {
+          const user = result.user;
+          console.log(user)
+          navigate(from, { replace: true });
+
+          // ...
+        })
+        .catch((error) => {
+          
+          console.error(error)
+        });
   }
    return (
      <div className="flex justify-between lg:flex-row sm:flex-col sm:items-center">
@@ -79,7 +105,11 @@ const Login = () => {
            <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
          </div>
          <div className="flex justify-center space-x-4">
-           <button aria-label="Log in with Google" className="p-3 rounded-sm">
+           <button
+             aria-label="Log in with Google"
+             onClick={googleSignIn}
+             className="p-3 rounded-sm"
+           >
              <svg
                xmlns="http://www.w3.org/2000/svg"
                viewBox="0 0 32 32"

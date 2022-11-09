@@ -9,6 +9,7 @@ const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   // console.log(user)
   const service = useLoaderData();
+  console.log(service)
   const [review, setReview] = useState({});
   const [mongoReview, setMongoReview] = useState([]);
   const {
@@ -22,6 +23,8 @@ const ServiceDetails = () => {
     benefits,
     reviews,
   } = service;
+
+  (features.split(',').map(x=>console.log(x)))
 
   const addReview = (e) => {
     e.preventDefault();
@@ -82,7 +85,7 @@ const ServiceDetails = () => {
             <div className="flex justify-between text-start border p-3 w-full sm:flex-col xl:flex-row">
               <div className="xl:w-1/2">
                 <h1 className="my-5 text-4xl font-bold">How I Works:</h1>
-                {features.map((feature) => (
+                {features.split(",").map((feature) => (
                   <li className="list-none mb-5">{feature}</li>
                 ))}
               </div>
@@ -90,7 +93,7 @@ const ServiceDetails = () => {
                 <h1 className="my-5 text-4xl font-bold">
                   Why you should take service
                 </h1>
-                {benefits.map((benfit) => (
+                {benefits.split(',').map((benfit) => (
                   <li className="list-none mb-5">{benfit}</li>
                 ))}
               </div>
@@ -123,7 +126,7 @@ const ServiceDetails = () => {
         </h1>
         {user?.uid &&
           mongoReview.map((item) => <MyReviews item={item}></MyReviews>)}
-        {reviews.map((review) => (
+        {reviews?.map((review) => (
           <Reviews review={review}></Reviews>
         ))}
         {user?.uid ? (

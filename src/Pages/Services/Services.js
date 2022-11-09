@@ -20,8 +20,6 @@ const Services = () => {
   },[page,size])
 
   const pages = Math.ceil(count / size);
-  console.log(pages)
-  
 
    return (
      <div className="my-20">

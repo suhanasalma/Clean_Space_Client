@@ -42,15 +42,23 @@ const Header = () => {
                tabIndex={0}
                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
              >
-               <li>
+               <li className="font-bold">
                  <Link to="/home">Home</Link>
                </li>
-               <li>
+               <li className="font-bold text-lg">
                  <Link to="/services">Services</Link>
                </li>
-               <li>
+               <li className="font-bold text-lg">
                  <Link to="/blogs">Blogs</Link>
                </li>
+               <li className="font-bold text-lg">
+                 <Link to="/addservice">Add Service</Link>
+               </li>
+               {user?.uid && (
+                 <li className="font-bold text-lg">
+                   <Link to="/reviews">My Reviews</Link>
+                 </li>
+               )}
              </ul>
            </div>
            <Link to="/" className=" text-center normal-case text-2xl">
@@ -63,16 +71,21 @@ const Header = () => {
          <div className="navbar-center hidden lg:flex">
            <ul className="gap-4 menu-horizontal p-0">
              <li>
-               <Link to="/home">Home</Link>
+               <Link className="font-bold text-lg" to="/home">
+                 Home
+               </Link>
              </li>
-             <li>
+             <li className="font-bold text-lg">
                <Link to="/services">Services</Link>
              </li>
-             <li>
+             <li className="font-bold text-lg">
                <Link to="/blogs">Blogs</Link>
              </li>
+             <li className="font-bold text-lg">
+               <Link to="/addservice">Add Service</Link>
+             </li>
              {user?.uid && (
-               <li>
+               <li className="font-bold text-lg">
                  <Link to="/reviews">My Reviews</Link>
                </li>
              )}
