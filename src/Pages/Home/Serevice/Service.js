@@ -8,7 +8,7 @@ const Service = () => {
   const size = 3;
   useEffect(() => {
     fetch(
-      `https://cleaning-server-suhanasalma.vercel.app/services?page=${page}&size=${size} `
+      `https://cleaning-server-ten.vercel.app/services?page=${page}&size=${size} `
     )
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +29,7 @@ const Service = () => {
         </p>
       </div>
       <div className="flex sm:flex-col lg:flex-row justify-center items-center gap-10">
-        {services.map((service) => (
+        {services?.map((service) => (
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}
       </div>

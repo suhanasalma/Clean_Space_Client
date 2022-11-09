@@ -9,7 +9,7 @@ const AddService = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     // posting service in server side
-    fetch("https://cleaning-server-suhanasalma.vercel.app/services", {
+    fetch("https://cleaning-server-ten.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -20,7 +20,7 @@ const AddService = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast("successfully added");
-          e.target.reset()
+          e.target.reset();
         }
       });
   };

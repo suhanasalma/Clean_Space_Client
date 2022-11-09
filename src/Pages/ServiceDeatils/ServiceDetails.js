@@ -29,7 +29,7 @@ const ServiceDetails = () => {
 
   const addReview = (e) => {
     e.preventDefault();
-    fetch("https://cleaning-server-suhanasalma.vercel.app/comments", {
+    fetch("https://cleaning-server-ten.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -40,7 +40,7 @@ const ServiceDetails = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast("Review Posted");
-        } 
+        }
         // console.log(data)
       });
   };
@@ -55,14 +55,13 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`https://cleaning-server-suhanasalma.vercel.app/comments?post=${_id}`)
+    fetch(`https://cleaning-server-ten.vercel.app/comments?post=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
         setMongoReview(data);
       });
   }, [_id, mongoReview]);
-
 
   return (
     <div>
@@ -132,7 +131,7 @@ const ServiceDetails = () => {
           </h1>
         )}
         {user?.uid &&
-          mongoReview.map((item) => <MyReviews item={item}></MyReviews>)}
+          mongoReview?.map((item) => <MyReviews item={item}></MyReviews>)}
         {reviews?.map((review) => (
           <Reviews review={review}></Reviews>
         ))}

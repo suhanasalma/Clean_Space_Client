@@ -11,33 +11,37 @@ const ReviewsByEmailId = () => {
   const { user, logOut } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`https://cleaning-server-suhanasalma.vercel.app/comments?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("cleaning-token")}`,
-      },
-    })
+    fetch(
+      `https://cleaning-server-ten.vercel.app/comments?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("cleaning-token")}`,
+        },
+      }
+    )
       .then((res) => {
-        if(res.status ===403 ||res.status===401){
+        if (res.status === 403 || res.status === 401) {
           return logOut();
         }
-        return res.json()})
+        return res.json();
+      })
       .then((data) => {
         setAllReview(data);
       });
-  }, [user?.email,logOut]);
+  }, [user?.email, logOut]);
 
   const handleDelete = (id) => {
     console.log(id);
     const proceed = window.confirm("do you want to delete it?");
     if (proceed) {
-      fetch(`https://cleaning-server-suhanasalma.vercel.app/comments/${id}`, {
+      fetch(`https://cleaning-server-ten.vercel.app/comments/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if(data.deletedCount>0){
-            toast('successfully deleted')
+          if (data.deletedCount > 0) {
+            toast("successfully deleted");
           }
           const remaingReview = allReviews.filter((item) => item._id !== id);
           setAllReview(remaingReview);
@@ -45,14 +49,12 @@ const ReviewsByEmailId = () => {
     }
   };
 
-  const handleEdit = (review) =>{
+  const handleEdit = (review) => {
     <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
       <h2 className="text-xl font-semibold leading-tight tracking-wide">
         {review.name}
       </h2>
-      <p className="flex-1 dark:text-gray-400">
-        {review.review}
-      </p>
+      <p className="flex-1 dark:text-gray-400">{review.review}</p>
       <div className="flex flex-col justify-center gap-3 mt-6 sm:flex-row">
         <button className="px-6 py-2 rounded-sm">Cancel</button>
         <button className="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-400 dark:text-gray-900">
@@ -61,7 +63,7 @@ const ReviewsByEmailId = () => {
       </div>
     </div>;
     console.log(review);
-  }
+  };
 
   return (
     <div>
@@ -79,7 +81,7 @@ const ReviewsByEmailId = () => {
               </tr>
             </thead>
             <tbody>
-              {allReviews.map((item) => (
+              {allReviews?.map((item) => (
                 <ReviewCard
                   item={item}
                   handleDelete={handleDelete}

@@ -7,7 +7,7 @@ const ReviewCard = ({ item, handleDelete, handleEdit }) => {
   const [service, setService] = useState([]);
 
   useEffect(() => {
-    fetch(`https://cleaning-server-suhanasalma.vercel.app/services/${post}`)
+    fetch(`https://cleaning-server-ten.vercel.app/services/${post}`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);

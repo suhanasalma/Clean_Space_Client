@@ -50,7 +50,7 @@ const Reviews = () => {
          spaceBetween={50}
          slidesPerView={1}
        >
-         {customerReviews.map((review) => (
+         {customerReviews?.map((review) => (
            <SwiperSlide key={review.id}>
              <div>
                <svg
