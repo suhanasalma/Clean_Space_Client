@@ -6,11 +6,11 @@ import Registration from "../../Pages/Authentication/Registration/Registration";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home";
 import InvalidePage from "../../Pages/InvalidePage/InvalidePage";
+import Profile from "../../Pages/Profile/Profile";
 import ReviewsByEmailId from "../../Pages/ReviewsSection/ReviewByEmailId/ReviewsByEmailId";
 import ServiceDetails from "../../Pages/ServiceDeatils/ServiceDetails";
 import Services from "../../Pages/Services/Services";
 import PrivateRouter from "../PrivateRoutes/PrivateRouter";
-
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +36,9 @@ export const router = createBrowserRouter([
       {
         path: "/services/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://cleaning-server-suhanasalma.vercel.app/services/${params.id}`
+          ),
         element: <ServiceDetails />,
       },
       {
@@ -46,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Registration />,
+      },
+      {
+        path: "/profile",
+        element: <Profile/>,
       },
       {
         path: "/reviews",

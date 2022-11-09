@@ -19,7 +19,7 @@ const googleProvider = new GoogleAuthProvider()
 
 
 const SharedContext = ({children}) => {
-   const [user,setUser] = useState('');
+   const [user,setUser] = useState(null);
    const [loading, setLoading] = useState(true)
 
   
@@ -37,6 +37,7 @@ const SharedContext = ({children}) => {
 
     const logOut = () =>{
       setLoading(true);
+      localStorage.removeItem('cleaning-token')
       return signOut(auth);
     }
 

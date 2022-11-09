@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-const ReviewCard = ({ item, handleDelete }) => {
-  const { name, image, review, time, post,_id } = item;
+const ReviewCard = ({ item, handleDelete, handleEdit }) => {
+  const { name, image, review, time, post, _id } = item;
 
   // console.log(handleDelete);
   const [service, setService] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${post}`)
+    fetch(`https://cleaning-server-suhanasalma.vercel.app/services/${post}`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);
@@ -15,7 +15,9 @@ const ReviewCard = ({ item, handleDelete }) => {
   return (
     <tr>
       <th>
-        <button onClick={()=>handleDelete(_id)} className='text-red-700'>X</button>
+        <button onClick={() => handleDelete(_id)} className="text-red-700">
+          X
+        </button>
       </th>
       <td>
         <div className="flex items-center space-x-3">
@@ -45,7 +47,12 @@ const ReviewCard = ({ item, handleDelete }) => {
       <td>{review}</td>
       <td>{time}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">Edit</button>
+        <button
+          onClick={() => handleEdit(item)}
+          className="btn btn-ghost btn-xs"
+        >
+          Edit
+        </button>
       </th>
     </tr>
   );

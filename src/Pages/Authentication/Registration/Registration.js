@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from "../../../Assests/login/signup.png";
+import useTitle from '../../../hooks/UseTitle';
 import {AuthContext} from '../../../SharedContext/SharedContext'
 
 const Registration = () => {
+  useTitle('Registration')
+  const location = useLocation()
+  const navigate = useNavigate()
+   let from = location.state?.from?.pathname || "/";
   const { createUserWithEmail, updateUser } = useContext(AuthContext);
    const handleSubmit = e =>{
       e.preventDefault()
@@ -14,6 +19,9 @@ const Registration = () => {
       const image = form.image.value;
       console.log(name,email,password,image)
        createUser(email, password, name, image);
+       //my navogate isn't working thats why i am doing this and for this problem i joined support session for many time but it doesn't work
+       navigate(from, { replace: true });
+       form.reset()
        
 
    }

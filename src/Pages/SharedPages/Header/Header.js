@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 import logo from '../../../Assests/logo/1.png'
 import { AuthContext } from '../../../SharedContext/SharedContext';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  const handleLogOut = () =>{
-    signOut()
-  }
+  const navigate =useNavigate()
+
+
   const signOut = () =>{
     logOut()
       .then(() => {
+        navigate('/')
         // Sign-out successful.
       })
       .catch((error) => {
@@ -96,7 +97,7 @@ const Header = () => {
              <div className="dropdown dropdown-end">
                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                  <div className="w-10 rounded-full">
-                   <img src={user?.photoURL} />
+                   <img src={user?.photoURL} alt='user'/>
                  </div>
                </label>
                <ul
@@ -104,26 +105,27 @@ const Header = () => {
                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                >
                  <li>
-                   <a className="justify-between">
+                   <Link to="/profile" className="justify-between">
                      Profile
                      <span className="badge">New</span>
-                   </a>
+                   </Link>
                  </li>
-                 <li>
-                   <a>Settings</a>
-                 </li>
-                 <li onClick={handleLogOut}>
-                   <a>Logout</a>
+                 <li onClick={signOut}>
+                   <p>Logout</p>
                  </li>
                </ul>
              </div>
            ) : (
              <div>
                <Link to="/register" className="mr-3">
-                 <button>Sign Up</button>
+                 <button className="lg:inline sm:hidden px-4 py-2 m-2 text-lg font-semibold rounded bg-cyan-600 text-white">
+                   Sign Up
+                 </button>
                </Link>
                <Link to="/login">
-                 <button>Log In</button>
+                 <button className="px-4 py-2 m-2 text-lg font-semibold rounded bg-cyan-600 text-white">
+                   Log In
+                 </button>
                </Link>
              </div>
            )}

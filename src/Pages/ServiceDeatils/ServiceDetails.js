@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Reviews from "../ReviewsSection/Reviews";
 import { AuthContext } from "../../SharedContext/SharedContext";
 import MyReviews from "../ReviewsSection/MyReviews/MyReviews";
+import useTitle from "../../hooks/UseTitle";
+import { toast } from "react-toastify";
+//  import { ToastContainer, toast } from "react-toastify";
+//  import "react-toastify/dist/ReactToastify.css";
 
 const ServiceDetails = () => {
+  useTitle("Service Details");
   const { user } = useContext(AuthContext);
-  // console.log(user)
   const service = useLoaderData();
-  console.log(service)
   const [review, setReview] = useState({});
   const [mongoReview, setMongoReview] = useState([]);
   const {
@@ -24,12 +27,9 @@ const ServiceDetails = () => {
     reviews,
   } = service;
 
-  (features.split(',').map(x=>console.log(x)))
-
   const addReview = (e) => {
     e.preventDefault();
-    console.log(review.post);
-    fetch("http://localhost:5000/comments", {
+    fetch("https://cleaning-server-suhanasalma.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -38,6 +38,9 @@ const ServiceDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.acknowledged) {
+          toast("Review Posted");
+        } 
         // console.log(data)
       });
   };
@@ -50,18 +53,16 @@ const ServiceDetails = () => {
     newReview[field] = value;
     setReview(newReview);
   };
-  //  console.log(review)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comments?post=${_id}`)
+    fetch(`https://cleaning-server-suhanasalma.vercel.app/comments?post=${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setMongoReview(data);
       });
-  }, [_id]);
+  }, [_id, mongoReview]);
 
-  console.log(review);
 
   return (
     <div>
@@ -93,12 +94,12 @@ const ServiceDetails = () => {
                 <h1 className="my-5 text-4xl font-bold">
                   Why you should take service
                 </h1>
-                {benefits.split(',').map((benfit) => (
+                {benefits.split(",").map((benfit) => (
                   <li className="list-none mb-5">{benfit}</li>
                 ))}
               </div>
             </div>
-            <div className="flex flex-wrap justify-center mt-10">
+            {/* <div className="flex flex-wrap justify-center mt-10">
               <button
                 type="button"
                 className="px-8 py-3 m-2 text-lg font-semibold rounded bg-cyan-600 text-white"
@@ -111,7 +112,7 @@ const ServiceDetails = () => {
               >
                 Learn more
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <img
@@ -121,9 +122,15 @@ const ServiceDetails = () => {
         />
       </section>
       <section className="my-20">
-        <h1 className="text-center text-3xl font-medium text-cyan-600">
-          Clients Review
-        </h1>
+        {reviews?.length ? (
+          <h1 className="text-center text-3xl font-medium text-cyan-600">
+            Clients Review
+          </h1>
+        ) : (
+          <h1 className="text-center text-3xl font-medium text-cyan-600 mb-10">
+            No Reviews Available
+          </h1>
+        )}
         {user?.uid &&
           mongoReview.map((item) => <MyReviews item={item}></MyReviews>)}
         {reviews?.map((review) => (
@@ -205,7 +212,11 @@ const ServiceDetails = () => {
           </div>
         ) : (
           <h1 className="text-3xl font-bold text-center">
-            Please Login to Post Your Reviews
+            Please{" "}
+            <Link to="/login" className="text-cyan-600">
+              Login
+            </Link>{" "}
+            to Post Your Reviews
           </h1>
         )}
       </section>

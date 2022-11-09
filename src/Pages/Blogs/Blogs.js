@@ -3,8 +3,10 @@ import img1 from '../../Assests/Blogs/1.png'
 import img2 from '../../Assests/Blogs/2.png'
 import img3 from '../../Assests/Blogs/3.jpg'
 import img4 from '../../Assests/Blogs/4.png'
+import useTitle from "../../hooks/UseTitle";
 
 const Blogs = () => {
+   useTitle('Blogs')
   return (
     <div className="my-20">
       <section className="dark:bg-gray-800 dark:text-gray-100">
