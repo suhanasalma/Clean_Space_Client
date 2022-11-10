@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const ReviewCard = ({ item, handleDelete, handleEdit }) => {
-  const { name, image, review, time, post, _id } = item;
+  const { name, image, review, time, post, _id, email } = item;
+  console.log(item);
 
   // console.log(handleDelete);
   const [service, setService] = useState([]);
@@ -40,7 +41,7 @@ const ReviewCard = ({ item, handleDelete, handleEdit }) => {
           </div>
           <div>
             <div className="font-bold">{name}</div>
-            <div className="text-sm opacity-50">Dhaka</div>
+            <div className="text-sm opacity-50">{email}</div>
           </div>
         </div>
       </td>

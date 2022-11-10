@@ -9,7 +9,7 @@ const Services = () => {
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const size = 3;
-
+console.log(services)
   useEffect(() => {
     fetch(
       `https://cleaning-server-two.vercel.app/services?page=${page}&size=${size} `

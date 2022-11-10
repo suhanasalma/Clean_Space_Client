@@ -15,31 +15,48 @@ const Login = () => {
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
-  console.log(from);
+  // console.log(from);
 
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
     }
-  }, [user, from]);
+  }, [user, from, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     SignInWithEmailPass(email, password);
-
     form.reset();
   };
 
   const SignInWithEmailPass = async (email, password) => {
     try {
       const result = await logInWithEmailPass(email, password);
-      // console.log(result)
+      console.log(result.user.email);
 
-      navigate(from, { replace: true });
+      //get jwt token
+      const currentUser = {
+        email: result.user.email,
+      };
+      console.log(currentUser);
+      fetch("https://cleaning-server-two.vercel.app/jwt", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("clean-token", data.token);
+          console.log(data);
+        });
+
+      // navigate(from, { replace: true });
     } catch (error) {
       toast(error.message);
     }
@@ -63,6 +80,23 @@ const Login = () => {
       .then((result) => {
         // Signed in
         const user = result.user;
+
+        const currentUser = {
+          email: user.email,
+        };
+        console.log(currentUser);
+        fetch("https://cleaning-server-two.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("clean-token", data.token);
+            console.log(data);
+          });
         // console.log(user);
         navigate(from, { replace: true });
 

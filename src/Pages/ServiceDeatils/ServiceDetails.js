@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const ServiceDetails = () => {
   useTitle("Service Details");
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const service = useLoaderData();
   // console.log(service)
   const [review, setReview] = useState({});
@@ -56,10 +56,10 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`https://cleaning-server-two.vercel.app/comments?post=${_id}`)
+    fetch(`https://cleaning-server-two.vercel.app/allcoments?post=${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setMongoReview(data);
       });
   }, [_id, mongoReview]);
@@ -117,8 +117,10 @@ const ServiceDetails = () => {
             No Reviews Available
           </h1>
         )}
-        {user?.uid &&
-          mongoReview?.map((item) => <MyReviews item={item}></MyReviews>)}
+
+        {mongoReview?.map((item) => (
+          <MyReviews item={item}></MyReviews>
+        ))}
         {reviews?.map((review) => (
           <Reviews review={review}></Reviews>
         ))}

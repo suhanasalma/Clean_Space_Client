@@ -15,13 +15,24 @@ const ReviewsByEmailId = () => {
       return;
     }
     fetch(
-      `https://cleaning-server-two.vercel.app/comments?email=${user?.email}`
+      `https://cleaning-server-two.vercel.app/comments?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("clean-token")}`,
+        },
+      }
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
+        console.log(data);
         setAllReview(data);
       });
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   const handleDelete = (id) => {
     console.log(id);
