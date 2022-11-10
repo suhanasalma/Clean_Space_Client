@@ -128,6 +128,10 @@ const ServiceDetails = () => {
         {user?.uid ? (
           <div className="text-center">
             <p className="text-2xl mb-5 font-bold">Add Review</p>
+            <p className="text-center text-xl my-5">
+              Please atleast Click on every field else there will be some
+              problem on commenting
+            </p>
             <form
               action=""
               onSubmit={addReview}
@@ -189,7 +193,7 @@ const ServiceDetails = () => {
                 name="time"
                 id=""
                 required
-                className="border w-1/6 text-center"
+                className="border md:w-1/6 sm:w-full text-center"
                 onBlur={handleOnBlur}
               />
               <div>

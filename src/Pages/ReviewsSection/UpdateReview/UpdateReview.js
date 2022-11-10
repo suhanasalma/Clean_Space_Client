@@ -48,7 +48,7 @@ const UpdateReview = () => {
       <h1 className="my-10 text-center text-2xl font-bold text-cyan-600">
         Update Your Comment and while updating please select recent time
       </h1>
-      <p>Post Name: {}</p>
+      <p className="text-center text-xl my-5">Please atleast Click on every field else there will be some problem on updating</p>
       <form
         onSubmit={handleUpdateUser}
         action=""
