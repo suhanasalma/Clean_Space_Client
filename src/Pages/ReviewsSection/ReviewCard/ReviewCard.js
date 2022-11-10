@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const ReviewCard = ({ item, handleDelete, handleEdit }) => {
+const ReviewCard = ({ item, handleDelete }) => {
   const { name, image, review, time, post, _id, email } = item;
-  console.log(item);
+  // console.log(item);
 
   // console.log(handleDelete);
   const [service, setService] = useState([]);
 
   useEffect(() => {
-    fetch(`https://cleaning-server-two.vercel.app/services/${post}`)
+    fetch(`http://localhost:5000/services/${post}`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);
@@ -48,12 +49,14 @@ const ReviewCard = ({ item, handleDelete, handleEdit }) => {
       <td>{review}</td>
       <td>{time}</td>
       <th>
-        <button
-          onClick={() => handleEdit(item)}
-          className="btn btn-ghost btn-xs"
-        >
-          Edit
-        </button>
+        <Link to={`/allcoments/${_id}`} service={service}>
+          <button
+            // onClick={() => handleEdit(_id)}
+            className="btn btn-ghost btn-xs"
+          >
+            Edit
+          </button>
+        </Link>
       </th>
     </tr>
   );

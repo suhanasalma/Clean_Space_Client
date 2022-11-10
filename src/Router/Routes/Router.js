@@ -8,6 +8,7 @@ import Home from "../../Pages/Home/Home";
 import InvalidePage from "../../Pages/InvalidePage/InvalidePage";
 import Profile from "../../Pages/Profile/Profile";
 import ReviewsByEmailId from "../../Pages/ReviewsSection/ReviewByEmailId/ReviewsByEmailId";
+import UpdateReview from "../../Pages/ReviewsSection/UpdateReview/UpdateReview";
 import ServiceDetails from "../../Pages/ServiceDeatils/ServiceDetails";
 import Services from "../../Pages/Services/Services";
 import PrivateRouter from "../PrivateRoutes/PrivateRouter";
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
       {
         path: "/services/:id",
         loader: ({ params }) =>
-          fetch(`https://cleaning-server-two.vercel.app/services/${params.id}`),
+          fetch(`http://localhost:5000/services/${params.id}`),
         element: <ServiceDetails />,
       },
       {
@@ -50,6 +51,12 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/allcoments/:id",
+        loader: ({ params }) => fetch(`http://localhost:5000/allcoments/${params.id}`),
+
+        element: <UpdateReview />,
       },
       {
         path: "/reviews",

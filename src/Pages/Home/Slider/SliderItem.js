@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SliderItem = ({item}) => {
    const {img,id,prev,next} = item;
@@ -16,9 +17,11 @@ const SliderItem = ({item}) => {
              </p>
              <p className="text-6xl text-white font-medium">We Promise</p>
            </div>
-           <button className="border-2 px-6 py-2 text-white text-xl rounded-xl hover:bg-cyan-600 hover:text-white ease-in-out duration-700">
-             All Services
-           </button>
+           <Link to='/services'>
+             <button className="border-2 px-6 py-2 text-white text-xl rounded-xl hover:bg-cyan-600 hover:text-white ease-in-out duration-700">
+               All Services
+             </button>
+           </Link>
          </div>
        </div>
        <div className="absolute flex gap-4 transform -translate-y-1/2 right-5 bottom-0">

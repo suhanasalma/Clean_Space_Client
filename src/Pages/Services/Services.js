@@ -4,16 +4,13 @@ import ServiceCard from "./ServiceCard/ServiceCard";
 
 const Services = () => {
   useTitle("All Services");
-
   const [services, setServices] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const size = 3;
-console.log(services)
+  console.log(services);
   useEffect(() => {
-    fetch(
-      `https://cleaning-server-two.vercel.app/services?page=${page}&size=${size} `
-    )
+    fetch(`http://localhost:5000/services?page=${page}&size=${size} `)
       .then((res) => res.json())
       .then((data) => {
         setCount(data.count);
@@ -22,6 +19,7 @@ console.log(services)
   }, [page, size]);
 
   const pages = Math.ceil(count / size);
+  console.log(services.length);
 
   return (
     <div className="my-20">
@@ -31,11 +29,16 @@ console.log(services)
         cleaning specialists offer thorough and organized cleaning services for
         clients across Dhaka.
       </p>
-      <div className="flex sm:flex-col lg:flex-row justify-center items-center gap-10">
-        {services?.map((service) => (
-          <ServiceCard service={service} key={service._id}></ServiceCard>
-        ))}
-      </div>
+
+      {services.length ? (
+        <div className="flex sm:flex-col lg:flex-row justify-center items-center gap-10">
+          {services?.map((service) => (
+            <ServiceCard service={service} key={service._id}></ServiceCard>
+          ))}
+        </div>
+      ) : (
+        <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400 mx-auto my-10"></div>
+      )}
 
       <div className="flex justify-center space-x-1 text-gray-100 my-20">
         {[...Array(pages).keys()].map((number) => (

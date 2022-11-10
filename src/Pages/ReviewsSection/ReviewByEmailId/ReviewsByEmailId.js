@@ -9,19 +9,17 @@ const ReviewsByEmailId = () => {
   useTitle("My Reviews");
   const [allReviews, setAllReview] = useState([]);
   const { user, logOut } = useContext(AuthContext);
+  const [comment, setComment] = useState([]);
 
   useEffect(() => {
     if (!user?.email) {
       return;
     }
-    fetch(
-      `https://cleaning-server-two.vercel.app/comments?email=${user?.email}`,
-      {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("clean-token")}`,
-        },
-      }
-    )
+    fetch(`http://localhost:5000/comments?email=${user?.email}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("clean-token")}`,
+      },
+    })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();
@@ -29,7 +27,7 @@ const ReviewsByEmailId = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setAllReview(data);
       });
   }, [user?.email, logOut]);
@@ -38,7 +36,7 @@ const ReviewsByEmailId = () => {
     console.log(id);
     const proceed = window.confirm("do you want to delete it?");
     if (proceed) {
-      fetch(`https://cleaning-server-two.vercel.app/comments/${id}`, {
+      fetch(`http://localhost:5000/comments/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -53,21 +51,14 @@ const ReviewsByEmailId = () => {
     }
   };
 
-  const handleEdit = (review) => {
-    <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
-      <h2 className="text-xl font-semibold leading-tight tracking-wide">
-        {review.name}
-      </h2>
-      <p className="flex-1 dark:text-gray-400">{review.review}</p>
-      <div className="flex flex-col justify-center gap-3 mt-6 sm:flex-row">
-        <button className="px-6 py-2 rounded-sm">Cancel</button>
-        <button className="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-400 dark:text-gray-900">
-          Agree
-        </button>
-      </div>
-    </div>;
-    console.log(review);
-  };
+  // const handleEdit = (id) => {
+
+  //     fetch(`http://localhost:5000//${id}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setComment(data));
+
+  //   // console.log(review);
+  // };
 
   return (
     <div>
@@ -90,7 +81,7 @@ const ReviewsByEmailId = () => {
                   item={item}
                   handleDelete={handleDelete}
                   key={item._id}
-                  handleEdit={handleEdit}
+                  // handleEdit={handleEdit}
                 ></ReviewCard>
               ))}
             </tbody>
