@@ -15,11 +15,14 @@ const ReviewsByEmailId = () => {
     if (!user?.email) {
       return;
     }
-    fetch(`http://localhost:5000/comments?email=${user?.email}`, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("clean-token")}`,
-      },
-    })
+    fetch(
+      `https://cleaning-server-two.vercel.app/comments?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("clean-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();
@@ -36,7 +39,7 @@ const ReviewsByEmailId = () => {
     console.log(id);
     const proceed = window.confirm("do you want to delete it?");
     if (proceed) {
-      fetch(`http://localhost:5000/comments/${id}`, {
+      fetch(`https://cleaning-server-two.vercel.app/comments/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -53,7 +56,7 @@ const ReviewsByEmailId = () => {
 
   // const handleEdit = (id) => {
 
-  //     fetch(`http://localhost:5000//${id}`)
+  //     fetch(`https://cleaning-server-two.vercel.app//${id}`)
   //       .then((res) => res.json())
   //       .then((data) => setComment(data));
 

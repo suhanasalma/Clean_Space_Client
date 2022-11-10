@@ -5,8 +5,8 @@ import useTitle from "../../../hooks/UseTitle";
 import { AuthContext } from "../../../SharedContext/SharedContext";
 
 const UpdateReview = () => {
-   useTitle('Update Review')
-   const navigate = useNavigate()
+  useTitle("Update Review");
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const info = useLoaderData();
   //   console.log(info)
@@ -17,7 +17,7 @@ const UpdateReview = () => {
   const handleUpdateUser = (e) => {
     e.preventDefault();
     console.log(updateComment);
-    fetch(`http://localhost:5000/allcoments/${_id}`, {
+    fetch(`https://cleaning-server-two.vercel.app/allcoments/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -26,10 +26,12 @@ const UpdateReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-         if (data.modifiedCount>0){
-            toast('updated success')
-            navigate('/reviews')
-         } console.log(data);});
+        if (data.modifiedCount > 0) {
+          toast("updated success");
+          navigate("/reviews");
+        }
+        console.log(data);
+      });
   };
 
   const handleChange = (e) => {
@@ -111,9 +113,9 @@ const UpdateReview = () => {
           className="border w-2/6 text-center"
         />
         <div className="text-center">
-            <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-cyan-600 text-white">
-              Update
-            </button>
+          <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-cyan-600 text-white">
+            Update
+          </button>
         </div>
       </form>
     </div>

@@ -9,7 +9,7 @@ const AddService = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     // posting service in server side
-    fetch("http://localhost:5000/services", {
+    fetch("https://cleaning-server-two.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -30,7 +30,7 @@ const ServiceDetails = () => {
 
   const addReview = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/comments", {
+    fetch("https://cleaning-server-two.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -56,7 +56,7 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allcoments?post=${_id}`)
+    fetch(`https://cleaning-server-two.vercel.app/allcoments?post=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
