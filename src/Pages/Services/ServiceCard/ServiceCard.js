@@ -19,7 +19,7 @@ const ServiceCard = ({ service }) => {
       <div className="flex flex-col justify-between p-6 space-y-8">
         <div className="space-y-2">
           <h2 className="text-3xl font-semibold tracking-wide">{name}</h2>
-          <p className="dark:text-gray-100">{description.slice(0, 100)}...</p>
+          <p className="dark:text-gray-100">{description?.slice(0, 100)}...</p>
           <p className="flex justify-between font-bold text-cyan-600 text-xl">
             {price} ${" "}
             <span className="flex items-center gap-2">

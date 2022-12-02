@@ -44,6 +44,7 @@ const AddService = () => {
       >
         <label htmlFor="name">Service Name</label>
         <input
+          required
           type="text"
           name="name"
           className="border-2 p-2"
@@ -53,6 +54,7 @@ const AddService = () => {
         />
         <label htmlFor="img">Image</label>
         <input
+          required
           type="text"
           name="img"
           className="border-2 p-2"
@@ -62,6 +64,7 @@ const AddService = () => {
         />
         <label htmlFor="price">Price</label>
         <input
+          required
           type="text"
           name="price"
           className="border-2 p-2"
@@ -71,6 +74,7 @@ const AddService = () => {
         />
         <label htmlFor="ratings">Ratings</label>
         <input
+          required
           type="text"
           name="ratings"
           className="border-2 p-2"
@@ -80,6 +84,7 @@ const AddService = () => {
         />
         <label htmlFor="description">Description</label>
         <textarea
+          required
           name="description"
           id=""
           placeholder="service details"
@@ -92,6 +97,7 @@ const AddService = () => {
         {/* please try to add like shown in example else code won't work */}
         <label htmlFor="features">Features</label>
         <textarea
+          required
           name="features"
           id=""
           placeholder="service feature ex: 1. POWER WASHING,2. GUTTER CLEANING"
@@ -104,6 +110,7 @@ const AddService = () => {
         {/* please try to add like shown in example else code won't work */}
         <label htmlFor="benefits">Benefits</label>
         <textarea
+          required
           name="benefits"
           id=""
           placeholder="service benefits ex: 1. Extend Your Windows’ Life,2. Enhance Your Windows’ Efficiency"
