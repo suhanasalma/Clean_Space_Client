@@ -4,6 +4,8 @@ import Header from '../Pages/SharedPages/Header/Header'
 import Footer from '../Pages/SharedPages/Footer/Footer'
 
 
+
+
 const Main = () => {
    return (
      <div className="max-w-screen-xl  mx-auto sm:w-full">
